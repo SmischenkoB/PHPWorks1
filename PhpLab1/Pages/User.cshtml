@@ -1,0 +1,28 @@
+﻿@page
+@model PhpLab1.Pages.UserModel
+@{
+}
+
+<div class="text-left">
+    @if (Model.UserName == "")
+    {
+        @foreach (var item in Model.userService.GetWorkerNames())
+        {
+            <a href="User?UserName=@item"><p>@item</p></a>
+        }
+    }
+    else
+    {
+        <h1>H1, @Model.UserName</h1>
+        <h2>Your skills</h2>
+        @foreach(var item in @Model.userService.GetSkillsByUser(Model.UserName))
+        {
+            <a href="Skills?SkillName=@item"><p>@item</p></a>
+        }
+        <h2>
+            You work at <a href="Department?DepartmentName=@Model.userService.GetDepartmentByName(Model.UserName)">
+                @Model.userService.GetDepartmentByName(Model.UserName)
+            </a>
+        </h2>
+    }
+</div>

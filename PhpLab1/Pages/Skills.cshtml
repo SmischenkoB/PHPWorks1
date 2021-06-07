@@ -1,0 +1,24 @@
+﻿@page
+@model PhpLab1.Pages.SkillsModel
+@{
+}
+
+
+<div class="text-left">
+    @if (Model.SkillName != "")
+    {
+        <h1>Skill @Model.SkillName</h1>
+        <p>Workers mastered this skill</p>
+        @foreach (var item in Model.skillService.GetUsersBySkills(Model.SkillName))
+        {
+            <a href="User?UserName=@item"><p>@item</p></a>
+        }
+    }
+    else
+    {
+        @foreach (var item in Model.skillService.GetSkills())
+        {
+            <a href="Skills?SkillName=@item"><p>@item</p></a>
+        }
+    }
+</div>

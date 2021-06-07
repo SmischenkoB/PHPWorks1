@@ -1,0 +1,23 @@
+﻿@page
+@model PhpLab1.Pages.DepartmentModel
+@{
+}
+
+<div class="text-left">
+    @if (Model.DepartmentName != "")
+    {
+        <h1>Company @Model.DepartmentName</h1>
+        <p>Company Workers</p>
+        @foreach (var item in Model.departmentService.GetWorkersByDepartmentName(Model.DepartmentName))
+        {
+            <a href="User?UserName=@item"><p>@item</p></a>
+        }
+    }
+    else
+    {
+        @foreach (var item in Model.departmentService.GetDepartmentsName())
+        {
+            <a href="Department?DepartmentName=@item"><p>@item</p></a>
+        }
+    }
+</div>
